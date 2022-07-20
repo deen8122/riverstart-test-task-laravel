@@ -23,6 +23,13 @@ class ProductFilter extends QueryFilter{
         return $this->builder->where('published', $published);
     }
 
+    public function deleted($deleted){
+        if($deleted){
+            return $this->builder->withTrashed()->whereNotNull('deleted_at');
+        }
+        return $this->builder->whereNull('deleted_at');
+    }
+
     public function price_max($price_min){
         return $this->builder->where('price', '<=',$price_min);
     }
