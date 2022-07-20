@@ -14,12 +14,17 @@ class Product extends Model
     use SoftDeletes;
 
     protected $hidden = ['created_at',"updated_at"];
+    protected  $fillable = ["name","price","published"];
+
 
     public function categories()
     {
         return $this->hasManyThrough(Category::class, ProductCategory::class,'product_id','id','id','category_id');
     }
 
+    /*
+     * Для фильтрации
+     */
     public function scopeFilter(Builder $builder, QueryFilter $filter){
         return $filter->apply($builder);
     }
