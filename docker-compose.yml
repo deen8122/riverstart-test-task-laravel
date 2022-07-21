@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./:/var/www
+            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - "8876:80"
+        depends_on:
+            - app
+        container_name: nginx
+
+    app:
+        build:
+            context: .
+            dockerfile: _docker/app/Dockerfile
+        volumes:
+            - ./:/var/www
+        depends_on:
+            -   db
+        container_name: app
+
+    db:
+        image: mysql:8.0
+        restart: always
+        tty: true
+        volumes:
+            -   ./tmp/db:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: example
+            MYSQL_ROOT_PASSWORD: deen812s
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        ports:
+            -   "3306:3306"
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        container_name: db
+
+
+

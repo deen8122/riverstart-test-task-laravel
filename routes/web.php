@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $users  = \App\Models\User::all()->toArray();
+    print_r($users);
     return view('welcome');
 });
