@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Filters\ProductFilter;
 use App\Http\Requests\Products\UpdateRequest;
-use App\Models\Client\ClientEvent;
 use App\Models\Product;
 use App\Services\Products\ProductService;
 use Illuminate\Http\JsonResponse;
@@ -16,12 +15,11 @@ class ProductController extends Controller
     public static  int $ClientEventPaginateCount = 20;
 
     /**
-     * Список
+     * Список товаров с возможностью применит фильтр
      */
     public function index(ProductFilter $request):JsonResponse
     {
-       return response()->json(
-           Product::filter($request)->with('categories')->paginate(self::$ClientEventPaginateCount));
+       return response()->json(Product::filter($request)->with('categories')->paginate(self::$ClientEventPaginateCount));
     }
 
     /*

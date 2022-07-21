@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Http\Requests\Categories;
 
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
@@ -22,9 +22,6 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' =>"required|max:255",
-            'price' => "required|numeric",
-            'category_id' => "required|array|between:2,10",
-            'category_id.*' => 'exists:categories,id',
         ];
     }
 

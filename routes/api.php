@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,3 +16,4 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::apiResource('products', ProductController::class);
+Route::apiResource('categories', CategoryController::class);

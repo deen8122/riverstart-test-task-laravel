@@ -96,6 +96,7 @@ class ProductService
     private function createProductCategoryRelation(int $productId, array $categoryIds)
     {
         $arTempt = [];
+        $categoryIds = array_unique($categoryIds);
         foreach ($categoryIds as $categoryId) {
             $arTempt[] = [
                 'category_id' => $categoryId,

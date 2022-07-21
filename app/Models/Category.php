@@ -8,5 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $hidden = ['created_at',"updated_at"];
+    protected $hidden = [
+        'created_at',
+        "updated_at"
+    ];
+    protected  $fillable = [
+        "name"
+    ];
+
+    public function products()
+    {
+        return $this->hasManyThrough(
+            Product::class,
+            ProductCategory::class,
+            'category_id',
+            'id',
+            'id',
+            'product_id');
+    }
 }

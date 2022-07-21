@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' =>"nullable|max:255|min:1",
             'price' => "nullable|numeric",
-            'category_id' => "required|array",
+            'category_id' => "required|array|between:2,10",
             'category_id.*' => 'exists:categories,id',
         ];
     }
